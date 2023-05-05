@@ -23,5 +23,13 @@ def add():
     return redirect("/result")
 
 
+@app.route("/reset", methods=["POST"])
+def reset():
+    if request.method == "POST":
+        data.clear()
+        return redirect("/")
+    return redirect("/result")
+
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=8000)
