@@ -8,6 +8,9 @@ data = dict()
 def main():
     return render_template("main.html")
 
+@app.route("/")
+def index():
+    return render_template("main.html")
 
 @app.route("/result", methods=["POST", "GET"])
 def result():
