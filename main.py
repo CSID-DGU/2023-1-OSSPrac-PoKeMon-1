@@ -4,6 +4,9 @@ app = Flask(__name__)
 
 data = dict()
 
+@app.route("/")
+def main():
+    return render_template("main.html")
 
 @app.route("/delete", methods=["POST", "GET"])
 def delete():
