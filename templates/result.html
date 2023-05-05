@@ -18,7 +18,7 @@
 </head>
 <body>
     <form id="delete-form" method="POST" action="/delete">
-        <table border = "1" id="myTable">
+        <table border="1" id="myTable">
             <thead>
                 <tr>
                     <th>이름</th>
@@ -44,12 +44,10 @@
                 {% endfor %}
             </tbody>
         </table>
-        <div>
             <button type="button" onclick="deleteRow()">Delete Row</button>
-            <form method="POST" action="/add" style="display: inline;">
-                <button type="submit">Add Row</button>
-            </form>
-        </div>
+    </form>
+    <form method="POST" action="/add">
+        <button type="submit">Add Row</button>
     </form>
     <form method="POST" action="/reset">
         <button type="submit">Home</button>
