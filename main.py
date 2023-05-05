@@ -8,6 +8,26 @@ data = dict()
 def main():
     return render_template("main.html")
 
+
+@app.route("/result", methods=["POST", "GET"])
+def result():
+    if request.method == "POST":
+        student = dict()
+        student["name"] = request.form.get("name")
+        student["studentNumber"] = int(request.form.get("studentNumber"))
+        student["major"] = request.form.get("major")
+        student["email"] = request.form.get("email_id") + request.form.get("email_addr")
+        student["gender"] = request.form.get("gender")
+        student["programmingLanguage"] = ", ".join(
+            request.form.getlist("programmingLanguage")
+        )
+        data[student["studentNumber"]] = student
+        result = list(data.values())
+        return render_template("result.html", result=result)
+    result = list(data.values())
+    return render_template("result.html", result=result)
+
+
 @app.route("/delete", methods=["POST", "GET"])
 def delete():
     if request.method == "POST":
