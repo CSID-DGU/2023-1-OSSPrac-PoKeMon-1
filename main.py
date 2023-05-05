@@ -22,9 +22,9 @@ def result():
             request.form.getlist("programmingLanguage")
         )
         data[student["studentNumber"]] = student
-        result = list(data.values())
+        result = [data[key] for key in sorted(data)]
         return render_template("result.html", result=result)
-    result = list(data.values())
+    result = [data[key] for key in sorted(data)]
     return render_template("result.html", result=result)
 
 
