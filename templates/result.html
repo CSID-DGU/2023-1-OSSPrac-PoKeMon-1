@@ -1,24 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <script>
-        function deleteRow() {
-            var table = document.getElementById("myTable");
-            var checkBoxes = table.getElementsByTagName("input");
-            var checkedBoxes = [];
-            for (var i = 0; i < checkBoxes.length; i++) {
-                if (checkBoxes[i].type == "checkbox" && checkBoxes[i].checked == true) {
-                    checkedBoxes.push(checkBoxes[i].value);
-                }
-            }
-            document.getElementById("studentNumber").value = checkedBoxes.join();
-            document.getElementById("delete-form").submit();
-        }
-    </script>
+
+    <title>result page</title>
+
 </head>
+
+
 <body>
-    <form id="delete-form" method="POST" action="/delete">
-        <table border="1" id="myTable">
+    <form method="POST">
+        <table border='1'>
             <thead>
                 <tr>
                     <th>이름</th>
@@ -27,31 +19,30 @@
                     <th>이메일</th>
                     <th>성별</th>
                     <th>프로그래밍 언어</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                {% for student in result %}
+                {% for result in result %}
                 <tr>
-                    <td>{{ student["name"] }}</td>
-                    <td>{{ student["studentNumber"] }}</td>
-                    <td>{{ student["major"] }}</td>
-                    <td>{{ student["email"] }}</td>
-                    <td>{{ student["gender"] }}</td>
-                    <td>{{ student["language"] }}</td>
-                    <td><input type="checkbox" value="{{ student['studentNumber'] }}" name="studentNumber"></td>
+                    <td>{{ result['name'] }}</td>
+                    <td>{{ result['studentNumber'] }}</td>
+                    <td>{{ result['major'] }}</td>
+                    <td>{{ result['email'] }}</td>
+                    <td>{{ result['gender'] }}</td>
+                    <td>{{ result['language'] }}</td>
+                    <td><input type="checkbox" name="studentNumber" value="{{ result['studentNumber'] }}"></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-            <button type="button" onclick="deleteRow()">Delete Row</button>
+        <div>
+            <button type="submit" formaction="/delete">Delete row</button>
+            <button type="submit" formaction="/add">Add row</button>
+        </div>
+        <div>
+            <button type="submit" formaction="/reset">Home</button>
+        </div>
     </form>
-    <form method="POST" action="/add">
-        <button type="submit">Add Row</button>
-    </form>
-    <form method="POST" action="/reset">
-        <button type="submit">Home</button>
-    </form>
-    <input type="hidden" id="studentNumber" name="studentNumber">
 </body>
+
 </html>
