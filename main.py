@@ -18,8 +18,8 @@ def result():
         student["major"] = request.form.get("major")
         student["email"] = request.form.get("email_id") + request.form.get("email_addr")
         student["gender"] = request.form.get("gender")
-        student["programmingLanguage"] = ", ".join(
-            request.form.getlist("programmingLanguage")
+        student["language"] = ", ".join(
+            request.form.getlist("language")
         )
         data[student["studentNumber"]] = student
         result = [data[key] for key in sorted(data)]
