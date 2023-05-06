@@ -4,6 +4,29 @@ app = Flask(__name__)
 
 data = dict()
 
+@app.route("/")
+def main():
+    return render_template("main.html")
+
+
+@app.route("/result", methods=["POST", "GET"])
+def result():
+    if request.method == "POST":
+        student = dict()
+        student["name"] = request.form.get("name")
+        student["studentNumber"] = int(request.form.get("studentNumber"))
+        student["major"] = request.form.get("major")
+        student["email"] = request.form.get("email_id") + request.form.get("email_addr")
+        student["gender"] = request.form.get("gender")
+        student["language"] = ", ".join(
+            request.form.getlist("language")
+        )
+        data[student["studentNumber"]] = student
+        result = [data[key] for key in sorted(data)]
+        return render_template("result.html", result=result)
+    result = [data[key] for key in sorted(data)]
+    return render_template("result.html", result=result)
+
 
 @app.route("/delete", methods=["POST", "GET"])
 def delete():
