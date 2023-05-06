@@ -2,23 +2,46 @@
 <html lang="en">
 
 <head>
-   
+
     <title>result page</title>
-    
+
 </head>
+
 
 <body>
     <form method="POST">
         <table border='1'>
             <thead>
-
+                <tr>
+                    <th>이름</th>
+                    <th>학번</th>
+                    <th>전공</th>
+                    <th>이메일</th>
+                    <th>성별</th>
+                    <th>프로그래밍 언어</th>
+                </tr>
             </thead>
             <tbody>
-
+                {% for result in result %}
+                <tr>
+                    <td>{{ result['name'] }}</td>
+                    <td>{{ result['studentNumber'] }}</td>
+                    <td>{{ result['major'] }}</td>
+                    <td>{{ result['email'] }}</td>
+                    <td>{{ result['gender'] }}</td>
+                    <td>{{ result['language'] }}</td>
+                    <td><input type="checkbox" name="studentNumber" value="{{ result['studentNumber'] }}"></td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
-
-
+        <div>
+            <button type="submit" formaction="/delete">Delete row</button>
+            <button type="submit" formaction="/add">Add row</button>
+        </div>
+        <div>
+            <button type="submit" formaction="/reset">Home</button>
+        </div>
     </form>
 </body>
 
