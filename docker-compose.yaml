@@ -1,0 +1,8 @@
+version : "3.0"
+
+services:
+  web:
+    build: .
+    image: seamoh/ossp_pokemon:3.0
+    ports:
+      - 80:80
